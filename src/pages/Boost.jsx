@@ -37,7 +37,7 @@ const Boost = () => {
     const [isTapingGuruModalOpen, setIsTapingGuruModalOpen] = useState(false);
 
     useEffect(() => {
-        api.getUserCoins("ikDoteen").then((e) => {
+        api.getUserCoins(localStorage.getItem("user")).then((e) => {
             setCoins(e.data.coins);
         });
 

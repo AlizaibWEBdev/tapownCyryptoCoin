@@ -13,7 +13,7 @@ const Tasks = () => {
     const [coins, setcoins] = useState(0)
  useEffect(() => {
 // get telegram user id then replace ikDoteen with that id 
-    api.getUserCoins("ikDoteen").then((e)=>{
+    api.getUserCoins(localStorage.getItem("user")).then((e)=>{
         setcoins(e.data.coins)
     })
 

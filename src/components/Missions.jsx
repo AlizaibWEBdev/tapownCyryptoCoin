@@ -12,7 +12,7 @@ const MissionLink = ({ missionName, reward,link=false,id}) => {
             <div className="single-side">
                 <img src="task.png" alt="" />
                 <div className="col">
-                    <p>{missionName}</p>
+                    <p className="mission-text">{missionName}</p>
                     <div className="reward">
                         <img src="coin.png" alt="" />
                         <b>{reward}</b>
