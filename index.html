@@ -15,9 +15,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('id');
     localStorage.setItem("user",myParam);
-    if(window.Telegram.WebApp.ready()){
+ 
       window.Telegram.WebApp.expand()
-    }
+    
    
     </script>
   </html>

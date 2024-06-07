@@ -7,7 +7,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+*:focus {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
 body {
   margin: 0;
   width: 100vw;
@@ -444,8 +449,11 @@ padding: 8px;
 
 .left-league{
   display: flex;
-  gap: 20px;
+  gap: 10px;
   padding-left: 15px;
+}
+.left-league .left-league-hading{
+  font-size: 15px;
 }
 
 .persentage{
@@ -470,9 +478,9 @@ padding: 8px;
   height: 40px;
   border-radius: 10px;
   border: none;
-  font-size: 18px;
-  letter-spacing: 4px;
-  font-family: fantasy;
+  font-size: 16px;
+
+
 }
 
 .right-league button.disaibled{
@@ -488,9 +496,10 @@ color: white;
 cursor: pointer;
 }
 .leauges{
-
+  margin-top: 5px;
   overflow-y: scroll;
-  max-height: 40vh;
+  height: 43vh;
+
   
 }
 .league{
@@ -542,6 +551,7 @@ cursor: pointer;
 
 .disable-boost p{
   color: #746A81;
+  font-size: 13px;
 }
 .disable-boost img{
   filter:grayscale(100%);
