@@ -20,7 +20,7 @@ const App = () => {
     return (
       <Router>
       <div className="app-container">
-          <Header />
+         
           <div className="content">
               <Routes>
                   <Route path="/" element={<Home />} />
