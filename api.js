@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://congenial-telegram-5wv45xjw95jc7jg4-3000.app.github.dev';
 
 const api = axios.create({
   baseURL: API_URL,
