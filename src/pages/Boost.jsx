@@ -11,9 +11,7 @@ const Boost = () => {
    
     ];
     const [boosters, setBoosters] = useState(boostersData);
-    const showmsg = (e)=>{
-        
-    }
+
 
     const handleBuyBooster = async (booster) => {
         if (coins >= booster.price) {
@@ -44,9 +42,9 @@ const Boost = () => {
 
             await api.updateUserCoins("ikDoteen", coins - booster.price);
 
-            showmsg(`You have purchased ${booster.name} booster!`);
+            alert(`You have purchased ${booster.name} booster!`);
         } else {
-            showmsg('Not enough coins to buy this booster.');
+            alert('Not enough coins to buy this booster.');
         }
     };
 
