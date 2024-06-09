@@ -3,16 +3,20 @@ import { useApi } from '../../context/ApiContext';
 import CoinsHave from '../components/CoinsHave';
 import { useNavigate } from 'react-router-dom';
 
-const Boost = () => {
+
+
+const Boost = () => 
+    {
     const boostersData = [
         { id: 1, name: 'Multitap', price: 300000, level: 1, icon: 'hello.png' },
         { id: 2, name: 'Energy Limit', price: 400000, level: 1, icon: 'flash.png' },
         { id: 3, name: 'Recharging Speed', price: 200, level: 1, icon: 'battery.png' },
+  
    
     ];
     const [boosters, setBoosters] = useState(boostersData);
 
-
+   
     const handleBuyBooster = async (booster) => {
         if (coins >= booster.price) {
             const newBoosters = boosters.map(b => {
@@ -223,7 +227,9 @@ const Boost = () => {
         const seconds = totalSeconds % 60;
         return `${hours}h ${minutes}m ${seconds}s`;
     };
+const plaGame = ()=>{
 
+}
     return (
         <div>
             <br />
@@ -238,7 +244,7 @@ const Boost = () => {
 
             <div className="boosters">
                 <h3>Your Daily Boosters:</h3>
-                <div className="row-boost d-flex">
+                <div className="row-boost d-flex" style={{flexWrap:"wrap"}}>
                     <div
                         className={`boost boost1 ${tapingGuruCount === 0 ? 'disable-boost' : ''}`}
                         onClick={tapingGuruCount > 0 ? () => setIsTapingGuruModalOpen(true) : null}
@@ -253,6 +259,8 @@ const Boost = () => {
                             </p>
                         </div>
                     </div>
+
+
                     <div
                         className={`boost boost2 ${tankfillsCount === 0 ? 'disable-boost' : ''}`}
                         onClick={tankfillsCount > 0 ? fillBoost : null}
@@ -267,6 +275,21 @@ const Boost = () => {
                             </p>
                         </div>
                     </div>
+
+                    <div
+                        className={`boost boost2 ${1==1?'disable-boost' : ''}`}
+                        onClick={plaGame}
+                    >
+                        <img src="coin.png" alt="" width={"30px"} />
+                        <div className="boost-name">
+                            <p> Guess and Earn</p>
+                            <p>
+                                300000
+                            </p>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
             <br />
