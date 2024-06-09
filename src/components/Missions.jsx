@@ -46,7 +46,7 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
 
 
         <div  className='mission center' style={{flexDirection:"column"}}>
-            <a  style={{textDecoration:"underline"}}  target='_blank' onClick={async (e) => {
+            <a  style={{textDecoration:"underline",alignSelf:"start"}}  target='_blank' onClick={async (e) => {
                 if (link) {
                     e.preventDefault();
                     await api.markMissionCompleted("userid", missionName);
@@ -88,7 +88,7 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
                 setCompleated(true);
                 setshowclaimPopup(amountToadd);
             }} className='claim--'>claim reward</button>}
-            {compleated && claimed && <span>{"claimed"}</span>}
+            {compleated && claimed && <span className='claim-lable'>{"claimed"}</span>}
 
             {showclaimPopup && <Cliam amount={reward} handelokClick={handelokClick} />}
         </div>

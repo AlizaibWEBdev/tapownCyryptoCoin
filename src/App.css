@@ -577,8 +577,8 @@ header {
 }
 
 .leauges {
-
-  height: 33vh;
+margin-top: 10px;
+  height: 30vh;
   overflow-y: scroll;
 
 }
