@@ -210,7 +210,11 @@ header {
  padding: 10px;
 }
 
-
+.mission .bottom-actions{
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
 .mission img {
   width: 30px;
 }
@@ -539,6 +543,11 @@ header {
   color: gray ;
   padding: 0px ;
   cursor: not-allowed ;
+  padding: 8px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+
 }
 
 

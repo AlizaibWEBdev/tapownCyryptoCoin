@@ -61,7 +61,7 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
 
 
 
-        <div className="d-flex" style={{justifyContent:"space-around",alignItems:"center"}}>
+        <div className="d-flex bottom-actions">
         <div className="single-side center">
                 <img src="task.png" alt="" />
                 <div className="col">
