@@ -219,9 +219,7 @@ header {
   width: 30px;
 }
 
-.mission-wraper a{
-  text-decoration: underline !important;
-}
+
 
 .mission .reward img {
   width: 15px;
@@ -230,6 +228,13 @@ header {
 .mission-wraper {
   height: 45vh;
   overflow-y: scroll;
+
+}
+.mission-wraper ::-webkit-scrollbar-thumb{
+  background-color: #9700c5;
+}
+.mission-wraper ::-webkit-scrollbar{
+  background-color: #730564;
 }
 
 .mission p{
@@ -333,7 +338,7 @@ header {
 .steps-list {
   border: 2px solid #392f6f5d;
   padding: 20px;
-  height: 33vh;
+  height: 40vh;
   overflow-y: scroll;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

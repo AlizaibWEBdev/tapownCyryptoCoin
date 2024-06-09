@@ -45,8 +45,8 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
 
 
 
-        <div target={link && '_blank'} className='mission center' style={{flexDirection:"column"}}>
-            <a target='_blank' onClick={async (e) => {
+        <div  className='mission center' style={{flexDirection:"column"}}>
+            <a  style={{textDecoration:"underline"}}  target='_blank' onClick={async (e) => {
                 if (link) {
                     e.preventDefault();
                     await api.markMissionCompleted("userid", missionName);
@@ -150,9 +150,7 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
 const Missions = ({ setcoins }) => {
     return (
         <div className='mission-wraper'>
-            <div id="popup-claim--">
-
-            </div>
+          
             <div>
                 <MissionLink missionName="Connect Kross Wallet" reward="100,000" id={"m1"} />
                 <MissionLink missionName="Join TapOwn Channel" reward="150,000" id={"m2"} />
