@@ -6,9 +6,11 @@ const CoinsHave = ({ coins }) => {
 
     useEffect(() => {
         let tropy = JSON.parse(localStorage.getItem("trophy_rewarded"))
-        tropy = tropy[tropy.length - 1 || 0];
+      if (tropy) {
+        tropy = tropy[tropy?.length - 1 || 0];
         setTxt(tropy.name)
         setimg(tropy.img)
+      }
     }, [coins])
 
     return (
