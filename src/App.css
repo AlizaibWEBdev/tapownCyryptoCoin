@@ -200,17 +200,14 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: #392f6f5d;
-  max-height: 100px;
-  padding-left: 20px;
-  padding-right: 20px;
+    height: 100px;
   border-radius: 10px;
   text-decoration: none;
   box-sizing: border-box;
   margin-top: 10px;
-  width: 85vw;
+  width: 90vw;
   min-width: 300px;
-  padding-bottom: 5px;
-  padding-top: 5px;
+ padding: 10px;
 }
 
 
@@ -234,6 +231,7 @@ header {
 .single-side {
   display: flex;
   gap: 5px;
+  
 }
 
 .tasks {
