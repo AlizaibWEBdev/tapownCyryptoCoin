@@ -783,3 +783,18 @@ margin-top: 10px;
   color: white;
 }
 
+.bottom-boosters{
+ height: 25vh;
+overflow-y: scroll;
+
+
+}
+.bottom-booster{
+  width: 90vw;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #392f6f5d;
+  display: flex;
+  justify-content: space-around;
+}

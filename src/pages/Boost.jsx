@@ -4,6 +4,18 @@ import CoinsHave from '../components/CoinsHave';
 import { useNavigate } from 'react-router-dom';
 
 const Boost = () => {
+    const boostersData = [
+        { id: 1, name: 'Multitap', price: 300000, level: 12, icon: 'hello.png' },
+        { id: 2, name: 'Energy Limit', price: 400000, level: 13, icon: 'energy_limit.png' },
+        { id: 3, name: 'Recharging Speed', price: 0, level: 5, icon: 'battery.png' },
+        { id: 4, name: 'Tap Bot', price: 200000, icon: 'tap_bot.png' }
+    ];
+    const [boosters, setBoosters] = useState(boostersData);
+
+
+
+
+
     const [coins, setCoins] = useState(0);
     const api = useApi();
     const navigate = useNavigate();
@@ -173,7 +185,7 @@ const Boost = () => {
             </div>
 
             <div className="boosters">
-                <h3>Your Daily Boosters</h3>
+                <h3>Your Daily Boosters:</h3>
                 <div className="row-boost d-flex">
                     <div
                         className={`boost boost1 ${tapingGuruCount === 0 ? 'disable-boost' : ''}`}
@@ -205,7 +217,26 @@ const Boost = () => {
                     </div>
                 </div>
             </div>
-
+         <br />
+         <h3>&nbsp;&nbsp;&nbsp;&nbsp; Boosters:</h3>
+         <br />
+        <div className="center">
+        <div className="bottom-boosters">
+            
+               
+            {boosters.map(booster => (
+               <div key={booster.id} className="bottom-booster" onClick={() => handleBuyBooster(booster)}>
+                   <img src={booster.icon} alt={booster.name} />
+                   <div className="booster-info">
+                       <p>{booster.name}</p>
+                       <p>{booster.price} coins</p>
+                       <p>Level: {booster.level}</p>
+                   </div>
+               </div>
+           ))}           
+        
+        </div>
+        </div>
             {isTapingGuruModalOpen && (
                 <div className="modal">
                     <div className="top">
