@@ -13,7 +13,7 @@ const Tasks = () => {
     const [coins, setcoins] = useState(0)
  useEffect(() => {
 // get telegram user id then replace ikDoteen with that id 
-    api.getUserCoins(localStorage.getItem("user")).then((e)=>{
+    api.getUserCoins("ikDoteen").then((e)=>{
         setcoins(e.data.coins)
     })
 
@@ -35,9 +35,9 @@ const Tasks = () => {
                 <button className={active === 2 ? "tab-task active" : "tab-task"} onClick={() => changeActive(2)}>Leagues</button>
                 <button className={active === 3 ? "tab-task active" : "tab-task"} onClick={() => changeActive(3)}>Ref Tasks</button>
             </div>
-            {active === 1 && <Missions />}
-            {active === 2 && <Leauges coins={coins}/>}
-            {active === 3 && <RefTask/>}
+            {active === 1 && <Missions setcoins={setcoins}/>}
+            {active === 2 && <Leauges coins={coins} setcoins={setcoins}/>}
+            {active === 3 && <RefTask />}
            
         </div>
     );

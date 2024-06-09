@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://congenial-telegram-5wv45xjw95jc7jg4-3000.app.github.dev';
+const API_URL = 'http://localhost:3000';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -9,21 +9,31 @@ const api = axios.create({
   }
 });
 
-// Fetch user by ID
-export const getUser = (userId) => api.get(`/users/${userId}`);
 
-// Update user coins
-export const updateUserCoins = (userId, coins) => api.patch(`/users/${userId}/coins`, { coins });
-export const getUserCoins = (userId) => api.get(`users/getCoins/${userId}`);
+
+export const updateUserCoins = (userId, coins) => new Promise((resolve,reject)=>{
+  resolve(localStorage.setItem("coins",coins) || 0)
+})
+export const getUserCoins = (userId) => new Promise((resolve,reject)=>{
+  resolve({data:{coins:parseInt(localStorage.getItem("coins") || 0)}})
+})
 
 // Check if mission is completed
-export const isMissionCompleted = (userId, missionId) => api.get(`/users/${userId}/missions/${missionId}/completed`);
+export const isMissionCompleted = (userId, missionId) => new Promise((resolve,reject)=>{
+  resolve(localStorage.getItem(missionId) || "0")
+})
 
 // Mark mission as completed
-export const markMissionCompleted = (userId, missionId) => api.patch(`/users/${userId}/missions/${missionId}/completed`);
+export const markMissionCompleted = (userId, missionId) => new Promise((resolve,reject)=>{
+  resolve(localStorage.setItem(missionId,"1"))
+})
 
-// Mark reward as claimed
-export const markRewardClaimed = (userId, missionId) => api.patch(`/users/${userId}/missions/${missionId}/reward`);
+export const markRewardClaimed = (userId, missionId) => new Promise((resolve,reject)=>{
+  resolve(localStorage.setItem(missionId + "_reward","claimed"))
+})
+export const  isRewardClaimed = (userId, missionId) => new Promise((resolve,reject)=>{
+  resolve(localStorage.getItem(missionId + "_reward") || "0")
+})
 
 // Check if user joined a group (dummy function)
 export const checkUserJoinedGroup = (userId) => api.get(`/users/${userId}/joinedGroup`);
@@ -31,7 +41,6 @@ export const getTop= () => api.get(`/top-players`);
 export const getuserID = () => localStorage.getItem("user_id")
 
 export default {
-  getUser,
   updateUserCoins,
   getUserCoins,
   isMissionCompleted,
@@ -39,5 +48,6 @@ export default {
   markRewardClaimed,
   checkUserJoinedGroup,
   getuserID,
-  getTop
+  getTop,
+  isRewardClaimed,
 };

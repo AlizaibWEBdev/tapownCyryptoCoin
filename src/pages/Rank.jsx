@@ -24,8 +24,8 @@ const Rank = () => {
         <thead className="fixed-header">
           <tr>
             <th>Rank</th>
-            <th>Telegram Username</th>
-            <th>Own Tokens</th>
+            <th>name</th>
+            <th>Own coins</th>
           </tr>
         </thead>
        

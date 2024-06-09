@@ -12,7 +12,7 @@ const TapXTap = () => {
     const api = useApi();
 
     const makeApiRequest = () => {
-        api.updateUserCoins(localStorage.getItem("user"), coins + CoinsSpeed).then((e) => {
+        api.updateUserCoins("ikDoteen", coins + CoinsSpeed).then((e) => {
             console.log(e);
         })
     }
@@ -23,7 +23,7 @@ const TapXTap = () => {
     });
 
     useEffect(() => {
-        api.getUserCoins(localStorage.getItem("user")).then((e) => {
+        api.getUserCoins("ikDoteen").then((e) => {
             setCoins(e.data.coins)
         })
 

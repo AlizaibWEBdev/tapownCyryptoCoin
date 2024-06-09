@@ -37,7 +37,7 @@ const Boost = () => {
     const [isTapingGuruModalOpen, setIsTapingGuruModalOpen] = useState(false);
 
     useEffect(() => {
-        api.getUserCoins(localStorage.getItem("user")).then((e) => {
+        api.getUserCoins("ikDoteen").then((e) => {
             setCoins(e.data.coins);
         });
 
@@ -165,7 +165,9 @@ const Boost = () => {
             <br />
             <div className="center">
                 <div>
-                    <p>Your share balance</p>
+                  <div className="center">
+                  <p>Your share balance</p>
+                  </div>
                     <CoinsHave coins={coins} />
                 </div>
             </div>

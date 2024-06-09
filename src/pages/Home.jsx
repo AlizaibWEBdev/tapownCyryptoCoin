@@ -10,7 +10,7 @@ const Home = () => {
     const api = useApi()
   
     const makeApiRequest = () => {
-    api.updateUserCoins(localStorage.getItem("user"),coins+1).then((e)=>{
+    api.updateUserCoins("ikDoteen",coins+1).then((e)=>{
         console.log(e);
     })
 
@@ -23,7 +23,7 @@ const Home = () => {
     });
 
     useEffect(() => {
-        api.getUserCoins(localStorage.getItem("user")).then((e)=>{
+        api.getUserCoins("ikDoteen").then((e)=>{
             setCoins(e.data.coins)
         })
         // Calculate the boost based on the time elapsed since the last update

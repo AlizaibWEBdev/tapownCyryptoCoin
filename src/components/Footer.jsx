@@ -11,7 +11,7 @@ const Footer = () => {
 
     return (
         <>
-            {!isHidden ? (
+             
                 <div className="center navigation">
                     <div className="links d-flex">
                         
@@ -57,7 +57,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-            ) : null}
+             
         </>
     );
 };
