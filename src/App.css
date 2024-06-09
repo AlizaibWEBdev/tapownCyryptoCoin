@@ -200,7 +200,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: #392f6f5d;
-    height: 100px;
+    height: 75px;
   border-radius: 10px;
   text-decoration: none;
   box-sizing: border-box;
@@ -232,6 +232,9 @@ header {
   display: flex;
   gap: 5px;
   
+}
+.single-side p {
+  font-size: 15px;
 }
 
 .tasks {
