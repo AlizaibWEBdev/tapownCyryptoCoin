@@ -46,7 +46,7 @@ const MissionLink = ({ missionName, reward, link = false, id,setcoins =()=>{} })
 
 
         <div target={link && '_blank'} className='mission center'>
-            <div className="single-side">
+            <div className="single-side center">
                 <img src="task.png" alt="" />
                 <div className="col">
                     <a target='_blank' onClick={async (e) => {
@@ -67,6 +67,7 @@ const MissionLink = ({ missionName, reward, link = false, id,setcoins =()=>{} })
                     </div>
                 </div>
             </div>
+
             {!compleated && <span>{">"}</span>}
             {compleated && !claimed && <button onClick={async (e) => {
                 e.preventDefault();
