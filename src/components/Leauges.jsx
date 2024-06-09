@@ -53,6 +53,7 @@ const Leagues = ({ coins,setcoins }) => {
             )}
             {leagues.map((league, index) => {
                 const percentage = Math.min((coins / league.price) * 100, 100);
+                
                 const canClaim = coins >= league.price;
                 const isClaimed = claimedTrophies.some(trophy => trophy.name === league.name);
 

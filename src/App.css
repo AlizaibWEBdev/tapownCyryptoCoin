@@ -553,7 +553,7 @@ header {
 
 
 .right-league button.disaibled {
-  background-color:transparent ;
+  background-color:#4237815d ;
   color: gray ;
   padding: 0px ;
   cursor: not-allowed ;
@@ -578,8 +578,8 @@ header {
 
 .leauges {
 
+  height: 33vh;
   overflow-y: scroll;
-  max-height: 40vh;
 
 }
 
