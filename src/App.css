@@ -219,6 +219,10 @@ header {
   width: 30px;
 }
 
+.mission-wraper a{
+  text-decoration: underline !important;
+}
+
 .mission .reward img {
   width: 15px;
 }
@@ -274,7 +278,10 @@ header {
 .tasktabs button.active {
   background-color: #392f6f5d;
 }
-
+.claim-lable{
+  padding: 5px;
+  background-color: gray;
+}
 .close {
   cursor: pointer;
 }
@@ -326,6 +333,8 @@ header {
 .steps-list {
   border: 2px solid #392f6f5d;
   padding: 20px;
+  height: 33vh;
+  overflow-y: scroll;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

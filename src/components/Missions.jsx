@@ -137,7 +137,7 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
                 setshowclaimPopup(amountToadd);
             }} className='claim--'>claim reward</button>}
 
-            {compleated && claimed && <span>{"Claimed"}</span>}
+            {compleated && claimed && <span className='claim-lable'>{"Claimed"}</span>}
 
 
             {showclaimPopup && <Cliam amount={reward} handelokClick={handelokClick} />}
@@ -164,7 +164,9 @@ const Missions = ({ setcoins }) => {
                 <MissionLink missionName="Follow BUCCON on X" reward="300,000" link={"https://x.com/buccon_org"} id={"m8"} setcoins={setcoins} />
                 <MissionLink missionName="Follow Kross Blockchain on Facebook" reward="400,000" link={"https://facebook.com/krosscoin"} id={"m9"} setcoins={setcoins} />
                 <MissionLink missionName="Subscribe to Krosscoin Youtube Channel" reward="500,000" link={"https://youtube.com/@krosscoinproject6568?si=HfzPAESykCLs4bDk"} id={"m10"} setcoins={setcoins} />
-
+                <br />
+                <br />
+                <br />
             </div>
         </div>
     );
