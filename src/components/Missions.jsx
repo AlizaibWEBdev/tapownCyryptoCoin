@@ -61,7 +61,8 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
 
 
 
-            <div className="single-side center">
+        <div className="d-flex" style={{justifyContent:"space-around",alignItems:"center"}}>
+        <div className="single-side center">
                 <img src="task.png" alt="" />
                 <div className="col">
 
@@ -90,7 +91,9 @@ const MissionLink = ({ missionName, reward, link = false, id, setcoins = () => {
             {compleated && claimed && <span>{"claimed"}</span>}
 
             {showclaimPopup && <Cliam amount={reward} handelokClick={handelokClick} />}
-        </div>) : (
+        </div>
+        </div>
+        ) : (
 
 
 
