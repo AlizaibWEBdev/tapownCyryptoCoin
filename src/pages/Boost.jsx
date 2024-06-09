@@ -5,13 +5,50 @@ import { useNavigate } from 'react-router-dom';
 
 const Boost = () => {
     const boostersData = [
-        { id: 1, name: 'Multitap', price: 300000, level: 12, icon: 'hello.png' },
-        { id: 2, name: 'Energy Limit', price: 400000, level: 13, icon: 'energy_limit.png' },
-        { id: 3, name: 'Recharging Speed', price: 0, level: 5, icon: 'battery.png' },
-        { id: 4, name: 'Tap Bot', price: 200000, icon: 'tap_bot.png' }
+        { id: 1, name: 'Multitap', price: 300000, level: 1, icon: 'hello.png' },
+        { id: 2, name: 'Energy Limit', price: 400000, level: 1, icon: 'flash.png' },
+        { id: 3, name: 'Recharging Speed', price: 200, level: 1, icon: 'battery.png' },
+   
     ];
     const [boosters, setBoosters] = useState(boostersData);
+    const showmsg = (e)=>{
+        
+    }
 
+    const handleBuyBooster = async (booster) => {
+        if (coins >= booster.price) {
+            const newBoosters = boosters.map(b => {
+                if (b.id === booster.id) {
+                    let newLevel = b.level;
+                    let newPrice = b.price;
+
+                    if (b.name === 'Energy Limit') {
+                        newLevel = b.level + 1;
+                    } else if (b.name === 'Multitap') {
+                        newLevel = b.level + 1;
+                    } else if (b.name === 'Recharging Speed') {
+                        newLevel = b.level + 1;
+                    } else if (b.name === 'Tap Bot') {
+                        localStorage.setItem('tap_bot', 'purchased');
+                    }
+
+                    newPrice = b.price * 2;
+                    return { ...b, price: newPrice, level: newLevel };
+                }
+                return b;
+            });
+
+            setBoosters(newBoosters);
+            setCoins(coins - booster.price);
+            localStorage.setItem('boosters', JSON.stringify(newBoosters));
+
+            await api.updateUserCoins("ikDoteen", coins - booster.price);
+
+            showmsg(`You have purchased ${booster.name} booster!`);
+        } else {
+            showmsg('Not enough coins to buy this booster.');
+        }
+    };
 
 
 
@@ -47,8 +84,25 @@ const Boost = () => {
     const [timeRemainingTank, setTimeRemainingTank] = useState(null);
     const [timeRemainingTapingGuru, setTimeRemainingTapingGuru] = useState(null);
     const [isTapingGuruModalOpen, setIsTapingGuruModalOpen] = useState(false);
-
+  useEffect(() => {
+    const savedCoins = localStorage.getItem('coins');
+        if (savedCoins) {
+            setCoins(parseInt(savedCoins));
+        }
+  }, [])
+  
     useEffect(() => {
+
+        const savedBoosters = localStorage.getItem('boosters');
+        const savedCoins = localStorage.getItem('coins');
+
+        if (savedBoosters) {
+            setBoosters(JSON.parse(savedBoosters));
+        }
+
+        if (savedCoins) {
+            setCoins(parseInt(savedCoins));
+        }
         api.getUserCoins("ikDoteen").then((e) => {
             setCoins(e.data.coins);
         });
@@ -177,9 +231,9 @@ const Boost = () => {
             <br />
             <div className="center">
                 <div>
-                  <div className="center">
-                  <p>Your share balance</p>
-                  </div>
+                    <div className="center">
+                        <p>Your share balance</p>
+                    </div>
                     <CoinsHave coins={coins} />
                 </div>
             </div>
@@ -217,26 +271,34 @@ const Boost = () => {
                     </div>
                 </div>
             </div>
-         <br />
-         <h3>&nbsp;&nbsp;&nbsp;&nbsp; Boosters:</h3>
-         <br />
-        <div className="center">
-        <div className="bottom-boosters">
-            
-               
-            {boosters.map(booster => (
-               <div key={booster.id} className="bottom-booster" onClick={() => handleBuyBooster(booster)}>
-                   <img src={booster.icon} alt={booster.name} />
-                   <div className="booster-info">
-                       <p>{booster.name}</p>
-                       <p>{booster.price} coins</p>
-                       <p>Level: {booster.level}</p>
-                   </div>
-               </div>
-           ))}           
-        
-        </div>
-        </div>
+            <br />
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp; Boosters:</h3>
+            <br />
+            <div className="center">
+                <div className="bottom-boosters">
+
+
+                    {boosters.map(booster => (
+                        <div key={booster.id} className="bottom-booster" onClick={() => handleBuyBooster(booster)}>
+                            <div className="booster-info">
+                                <img src={booster.icon} alt={booster.name} style={{ width: "40px", height: "40px" }} />
+                                <div className="single">
+                                    <p style={{"marginBottom":"5px"}}>{booster.name}</p>
+                                  
+                                    <p>{booster.price}
+                                        &nbsp;
+                                        &nbsp;
+                                        {booster.id!==4 && <span className='level'>| {booster.level} Level</span>}
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div>&gt;</div>
+                        </div>
+                    ))}
+
+                </div>
+            </div>
             {isTapingGuruModalOpen && (
                 <div className="modal">
                     <div className="top">
