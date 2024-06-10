@@ -51,7 +51,7 @@ body {
 
 .navigation {
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   width: 100%;
 }
 
@@ -78,8 +78,9 @@ header span {
 }
 
 .links a {
-  width: 50px;
-  height: 60px;
+  width:calc(95%/5);
+
+  height: 70px;
   border-radius: 8px;
   background-color: #392f6f5d;
   flex-direction: column;

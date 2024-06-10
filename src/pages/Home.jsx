@@ -26,38 +26,41 @@ const Home = () => {
 
     useEffect(() => {
         api.getUserCoins("ikDoteen").then((e) => { setCoins(e.data.coins) })
-
+    
         let data = localStorage.getItem("boosters")
         if (data) {
             data = JSON.parse(localStorage.boosters);
-
-            data.map((obj) => {
-                if (obj.name == "Multitap") {
+    
+            data.forEach((obj) => {
+                if (obj.name === "Multitap") {
                     setCoinsSpeed(obj.level)
                 }
-                if (obj.name == "Energy Limit") {
+                if (obj.name === "Energy Limit") {
                     setenergylimit(energylimit * obj.level);
                 }
-                if (obj.name == "Recharging Speed") {
-                    setrechargingspeed(obj.level)
+                if (obj.name === "Recharging Speed" && obj.level !== rechargingspeed) {
+                    setrechargingspeed(obj.level);
                 }
-
+    
             })
         }
-
+    
         const savedBoost = localStorage.getItem('boost');
         const savedTimestamp = localStorage.getItem('boostTimestamp');
-
+    
         if (savedBoost && savedTimestamp) {
             const elapsedSeconds = Math.floor((Date.now() - parseInt(savedTimestamp, 10)) / 1000);
             const newBoost = Math.min(energylimit, parseInt(savedBoost, 10) + elapsedSeconds);
             setBoost(newBoost);
         }
-
+    
         const interval = setInterval(() => {
             setBoost((prevBoost) => {
                 if (prevBoost < energylimit) {
-                    const newBoost = prevBoost + rechargingspeed;
+                    // Calculate the maximum allowed boost increment
+                    const maxIncrement = Math.min(energylimit - prevBoost, rechargingspeed);
+                    // Calculate the newBoost ensuring it doesn't exceed energylimit
+                    const newBoost = prevBoost + maxIncrement;
                     localStorage.setItem('boost', newBoost);
                     localStorage.setItem('boostTimestamp', Date.now());
                     return newBoost;
@@ -65,9 +68,10 @@ const Home = () => {
                 return prevBoost;
             });
         }, 1000);
-
+    
         return () => clearInterval(interval);
-    }, []);
+    }, [rechargingspeed]);
+    
 
 
 

@@ -54,7 +54,7 @@ const Boost = () => {
 
             await api.updateUserCoins("ikDoteen", coins - booster.price);
             openmsgmodal(booster.image,`You have purchased ${booster.name} booster!`)
-            alert();
+         
         } else {
             openmsgmodal("low.png",'Not enough coins to buy this booster.');
         }
