@@ -15,7 +15,7 @@ const Boost = () => {
         { id: 1, name: 'Multitap', price: 300000, level: 1, icon: 'hello.png' },
         { id: 2, name: 'Energy Limit', price: 400000, level: 1, icon: 'flash.png' },
         { id: 3, name: 'Recharging Speed', price: 200, level: 1, icon: 'battery.png' },
-
+        { id: 4, name: 'Tap Bot', price: 5000000, icon: 'robot.png' }
 
     ];
     const [boosters, setBoosters] = useState(boostersData);

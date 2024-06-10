@@ -973,3 +973,15 @@ overflow-y: scroll;
   border: none;
   cursor: pointer;
 }
+
+.scrolltop{
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  background-color: #007bff;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+
+}
