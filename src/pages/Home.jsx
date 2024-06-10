@@ -73,7 +73,6 @@ const Home = () => {
 
 
 
-
     const handleTap = (event) => {
         
 
