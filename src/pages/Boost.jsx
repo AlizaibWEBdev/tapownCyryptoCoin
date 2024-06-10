@@ -249,18 +249,17 @@ const Boost = () => {
                     </div>
                 </div>
             }
-            <br />
+            
             <div className="center">
                 <div>
-                    <div className="center">
-                        <p>Your share balance</p>
-                    </div>
+                   
                     <CoinsHave coins={coins} />
                 </div>
             </div>
 
             <div className="boosters">
-                <h3>Your Daily Boosters:</h3>
+              
+                <h4>Your Daily Boosters:</h4>
                 <div className="row-boost d-flex" style={{ flexWrap: "wrap" }}>
                     <div
                         className={`boost boost1 ${tapingGuruCount === 0 ? 'disable-boost' : ''}`}
@@ -310,9 +309,9 @@ const Boost = () => {
 
                 </div>
             </div>
-            <br />
-            <h3>&nbsp;&nbsp;&nbsp;&nbsp; Boosters:</h3>
-            <br />
+         
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp; Boosters:</h4>
+         
             <div className="center">
                 <div className="bottom-boosters">
 

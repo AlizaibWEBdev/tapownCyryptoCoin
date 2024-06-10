@@ -790,21 +790,23 @@ margin-top: 10px;
 }
 
 .bottom-boosters{
- height: 25vh;
+ height: 30vh;
 overflow-y: scroll;
 
 
 }
 .bottom-booster{
   width: 90vw;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 10px;
-  padding: 15px;
+ padding-top: 5px ;
+ padding-bottom: 5px;
+ padding-left: 15px;
+ padding-right: 15px;
   cursor: pointer;
   background-color: #392f6f5d;
   display: flex;
   align-items: center;
-
   justify-content: space-between;
 }
 
@@ -853,10 +855,11 @@ overflow-y: scroll;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.821);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
 .modal-content {
