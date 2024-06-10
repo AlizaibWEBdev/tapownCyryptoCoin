@@ -2,21 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useApi } from '../../context/ApiContext';
 import CoinsHave from '../components/CoinsHave';
 import { useNavigate } from 'react-router-dom';
+import GameModal from '../components/GameModal';
 
 
+const Boost = () => {
+    const [msg, setmsg] = useState("hi")
+    const [openmodal, setopenmodal] = useState(false)
+    const [imgsrc, setimgsrc] = useState("coin.png");
 
-const Boost = () => 
-    {
+
     const boostersData = [
         { id: 1, name: 'Multitap', price: 300000, level: 1, icon: 'hello.png' },
         { id: 2, name: 'Energy Limit', price: 400000, level: 1, icon: 'flash.png' },
         { id: 3, name: 'Recharging Speed', price: 200, level: 1, icon: 'battery.png' },
-  
-   
+
+
     ];
     const [boosters, setBoosters] = useState(boostersData);
+    const openmsgmodal = (img,msg)=>{
+            setimgsrc(img);
+            setmsg(msg);
+            setopenmodal(true)
+    }
 
-   
     const handleBuyBooster = async (booster) => {
         if (coins >= booster.price) {
             const newBoosters = boosters.map(b => {
@@ -45,10 +53,10 @@ const Boost = () =>
             localStorage.setItem('boosters', JSON.stringify(newBoosters));
 
             await api.updateUserCoins("ikDoteen", coins - booster.price);
-
-            alert(`You have purchased ${booster.name} booster!`);
+            openmsgmodal(booster.image,`You have purchased ${booster.name} booster!`)
+            alert();
         } else {
-            alert('Not enough coins to buy this booster.');
+            openmsgmodal("low.png",'Not enough coins to buy this booster.');
         }
     };
 
@@ -59,6 +67,8 @@ const Boost = () =>
     const api = useApi();
     const navigate = useNavigate();
     const initialBoosts = 3;
+   
+
 
     // State for Tank Fills
     const [tankfillsCount, setTankfillsCount] = useState(() => {
@@ -86,13 +96,13 @@ const Boost = () =>
     const [timeRemainingTank, setTimeRemainingTank] = useState(null);
     const [timeRemainingTapingGuru, setTimeRemainingTapingGuru] = useState(null);
     const [isTapingGuruModalOpen, setIsTapingGuruModalOpen] = useState(false);
-  useEffect(() => {
-    const savedCoins = localStorage.getItem('coins');
+    useEffect(() => {
+        const savedCoins = localStorage.getItem('coins');
         if (savedCoins) {
             setCoins(parseInt(savedCoins));
         }
-  }, [])
-  
+    }, [])
+
     useEffect(() => {
 
         const savedBoosters = localStorage.getItem('boosters');
@@ -227,11 +237,18 @@ const Boost = () =>
         const seconds = totalSeconds % 60;
         return `${hours}h ${minutes}m ${seconds}s`;
     };
-const plaGame = ()=>{
-
-}
+   
     return (
         <div>
+            {openmodal &&
+                <div className="msgmodal">
+                    <div className="msgmodal-card">
+                        <img src={imgsrc} alt="" width={"120px"}/>
+                       <p> {msg}</p>
+                        <button onClick={() => { setopenmodal(false) }}>okay</button>
+                    </div>
+                </div>
+            }
             <br />
             <div className="center">
                 <div>
@@ -244,7 +261,7 @@ const plaGame = ()=>{
 
             <div className="boosters">
                 <h3>Your Daily Boosters:</h3>
-                <div className="row-boost d-flex" style={{flexWrap:"wrap"}}>
+                <div className="row-boost d-flex" style={{ flexWrap: "wrap" }}>
                     <div
                         className={`boost boost1 ${tapingGuruCount === 0 ? 'disable-boost' : ''}`}
                         onClick={tapingGuruCount > 0 ? () => setIsTapingGuruModalOpen(true) : null}
@@ -277,15 +294,16 @@ const plaGame = ()=>{
                     </div>
 
                     <div
-                        className={`boost boost2 ${1==1?'disable-boost' : ''}`}
-                        onClick={plaGame}
+                        className={`boost boost2`}
+                        
                     >
-                        <img src="coin.png" alt="" width={"30px"} />
-                        <div className="boost-name">
-                            <p> Guess and Earn</p>
-                            <p>
-                                300000
-                            </p>
+
+                        <div className="boost-name center" style={{ flexDirection: "column", gap: "5px" }}>
+                            <p> Guess and Earn 300000</p>
+
+
+                            <GameModal />
+
                         </div>
                     </div>
 
@@ -304,12 +322,12 @@ const plaGame = ()=>{
                             <div className="booster-info">
                                 <img src={booster.icon} alt={booster.name} style={{ width: "40px", height: "40px" }} />
                                 <div className="single">
-                                    <p style={{"marginBottom":"5px"}}>{booster.name}</p>
-                                  
+                                    <p style={{ "marginBottom": "5px" }}>{booster.name}</p>
+
                                     <p>{booster.price}
                                         &nbsp;
                                         &nbsp;
-                                        {booster.id!==4 && <span className='level'>| {booster.level} Level</span>}
+                                        {booster.id !== 4 && <span className='level'>| {booster.level} Level</span>}
                                     </p>
                                 </div>
 

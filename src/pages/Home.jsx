@@ -8,7 +8,7 @@ const Home = () => {
 
 
     const [CoinsSpeed, setCoinsSpeed] = useState(1)
-      
+
     const [coins, setCoins] = useState(0);
     const [animations, setAnimations] = useState([]);
     const [lastTapTime, setLastTapTime] = useState(0);
@@ -18,30 +18,30 @@ const Home = () => {
 
 
     const api = useApi()
-    const makeApiRequest = () => {api.updateUserCoins("ikDoteen", coins + CoinsSpeed).then(() => {})}
+    const makeApiRequest = () => { api.updateUserCoins("ikDoteen", coins + CoinsSpeed).then(() => { }) }
 
-    const [boost, setBoost] = useState(() => {const savedBoost = localStorage.getItem('boost');return savedBoost ? parseInt(savedBoost,10) : energylimit;});
+    const [boost, setBoost] = useState(() => { const savedBoost = localStorage.getItem('boost'); return savedBoost ? parseInt(savedBoost, 10) : energylimit; });
 
 
 
     useEffect(() => {
-        api.getUserCoins("ikDoteen").then((e) => { setCoins(e.data.coins)})
-        
-        let data =localStorage.getItem("boosters")
+        api.getUserCoins("ikDoteen").then((e) => { setCoins(e.data.coins) })
+
+        let data = localStorage.getItem("boosters")
         if (data) {
             data = JSON.parse(localStorage.boosters);
 
-            data.map((obj)=>{
+            data.map((obj) => {
                 if (obj.name == "Multitap") {
                     setCoinsSpeed(obj.level)
-                }   
+                }
                 if (obj.name == "Energy Limit") {
-                    setenergylimit(energylimit*obj.level);
+                    setenergylimit(energylimit * obj.level);
                 }
                 if (obj.name == "Recharging Speed") {
                     setrechargingspeed(obj.level)
                 }
-                
+
             })
         }
 
@@ -75,13 +75,13 @@ const Home = () => {
 
 
     const handleTap = (event) => {
-        console.log("called");
+        
 
 
         const now = Date.now();
-     
+
         if (boost > 0) {
-            const newBoost = boost - CoinsSpeed;``
+            const newBoost = boost - CoinsSpeed; ``
             setBoost(newBoost);
             localStorage.setItem('boost', newBoost);
             localStorage.setItem('boostTimestamp', Date.now());
@@ -128,7 +128,20 @@ const Home = () => {
             <CoinsHave coins={coins} />
 
             <br />
-            <img src="coin.png" alt="" style={{ maxWidth: '250px' }} onClick={handleTap}/>
+            <img src="coin.png" alt="" style={{ maxWidth: '250px' }} 
+            onClick={(e) => {
+                const tapCount = 1;
+                for (let i = 0; i < tapCount; i++) {
+                  handleTap(e);
+                }
+              }}
+              onTouchStart={(e) => {
+                const touches = e.touches.length;
+                for (let i = 0; i < touches; i++) {
+                  handleTap(e.touches[i]);
+                }
+              }}
+            />
             <span className="shadow"></span>
             <div style={{ margin: '20px 0' }}>
                 <div className='center'>{boost} / {energylimit} </div>

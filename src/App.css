@@ -821,3 +821,151 @@ overflow-y: scroll;
   font-weight: 600;
   font-size: 15px;
 }
+
+
+
+
+/* src/components/GameModal.css */
+
+.play-button
+ {
+    background-color: transparent;
+    border: none;
+   width:fit-content;
+  cursor: pointer;
+   text-align: center;
+   background-color: #007bff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.time-left-button{
+  background-color: transparent;
+  color: gray;
+  border: none;
+  font-weight: 500;
+
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #282c34;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.instructions h2,
+.time-left h2 {
+    font-size: 24px;
+}
+
+.instructions p {
+    font-size: 18px;
+}
+
+.start-game-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.close-modal-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.number-guessing-game h1 {
+    font-size: 24px;
+}
+
+.number-guessing-game p {
+    font-size: 18px;
+}
+
+.number-guessing-game input {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: none;
+    outline: 1px solid #007bff;
+    background-color: #232434;
+}
+
+.number-guessing-game button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.number-guessing-game button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+}
+
+
+.msgmodal{
+  width: 100vw;
+  height: 100vh;
+  background-color: #251f47d3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.msgmodal-card{
+  padding: 10px;
+  border-radius: 10px;
+   width: 300px;
+   min-height: 300px;
+   background-color: #232434;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+} 
+
+.msgmodal-card button{
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+}
