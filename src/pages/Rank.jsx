@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useApi } from '../../context/ApiContext';
-const Rank = () => {
-  const [players, setPlayers] = useState([]);
-  const api = useApi();
+import { sql } from "@vercel/postgres";
 
+;
+const Rank = () => {
+  const players = [];
   
   useEffect(() => {
-    api.getTop()
-      .then(response => {
-       
-        const sortedPlayers = response.data.sort((a, b) => b.rank - a.rank);
-        setPlayers(sortedPlayers);
-      })
-      .catch(error => console.error('Error fetching data:', error));
+
+    async function getusers  (){
+      const { users } = await sql`SELECT * FROM users`;
+      console.log(users);
+    }
+    getusers();
   }, []);
 
   return (
