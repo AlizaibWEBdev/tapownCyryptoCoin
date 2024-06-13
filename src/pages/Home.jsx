@@ -72,14 +72,16 @@ const Home = () => {
             localStorage.setItem('boost', newBoost);
             localStorage.setItem('boostTimestamp', Date.now());
         } else if (now - lastTapTime < energylimit) {
+           
             return;
         }
 
         setLastTapTime(now);
+
         let oldcoins = localStorage.getItem("coins");
         if (oldcoins) {
-            console.log("old: ",oldcoins);
             setCoins(parseInt(oldcoins) + CoinsSpeed)
+      
         }else{
             setCoins(coins + CoinsSpeed);
         }
@@ -96,7 +98,8 @@ const Home = () => {
             clearTimeout(timeoutRef.current);
         }
         console.log(coins);
-      
+       
+
 
 
         timeoutRef.current = setTimeout(() => {
@@ -118,6 +121,9 @@ const Home = () => {
                 prevAnimations.filter((anim) => anim.id !== newAnimation.id)
             );
         }, 1000);
+
+
+        localStorage.setItem("coins",coins);
     };
 
     return (
