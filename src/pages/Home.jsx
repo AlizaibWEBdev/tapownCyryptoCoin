@@ -6,12 +6,9 @@ const Home = () => {
     const [CoinsSpeed, setCoinsSpeed] = useState(1)
     const [coins, setCoins] = useState(0);
     const [animations, setAnimations] = useState([]);
-    const [lastTapTime, setLastTapTime] = useState(0);
-    const timeoutRef = useRef(null);
     const [energylimit, setenergylimit] = useState(500);
     const [rechargingspeed, setrechargingspeed] = useState(1)
-    const api = useApi()
-    const makeApiRequest = () => { api.updateUserCoins("ikDoteen", coins + CoinsSpeed).then(() => { }) }
+    const api = useApi();
     const [boost, setBoost] = useState(() => { const savedBoost = localStorage.getItem('boost'); return savedBoost ? parseInt(savedBoost, 10) : energylimit; });
     useEffect(() => {
         api.getUserCoins("ikDoteen").then((e) => { setCoins(e.data.coins) })
@@ -33,6 +30,7 @@ const Home = () => {
 
             })
         }
+
         const savedBoost = localStorage.getItem('boost');
         const savedTimestamp = localStorage.getItem('boostTimestamp');
 
@@ -62,68 +60,32 @@ const Home = () => {
 
     const handleTap = (event) => {
 
-       
 
-        const now = Date.now();
+        function increaseCoin() {
+            localStorage.setItem("coins",coins+CoinsSpeed);
+
+            
+            setCoins(coins + CoinsSpeed);
+            const { clientX, clientY } = event;
+            const newAnimation = { id: Date.now(), x: clientX, y: clientY };
+            setAnimations((prevAnimations) => [...prevAnimations, newAnimation])
+            setTimeout(() => {
+                setAnimations((prevAnimations) =>
+                    prevAnimations.filter((anim) => anim.id !== newAnimation.id)
+                );
+            }, 1000);
+        }
+        energylimit < 1 ? setTimeout(() => { increaseCoin(); console.log("hib"); }, 500) : increaseCoin();
+
 
         if (boost > 0) {
-            const newBoost = boost - CoinsSpeed; ``
+            const newBoost = boost - CoinsSpeed;
             setBoost(newBoost);
             localStorage.setItem('boost', newBoost);
             localStorage.setItem('boostTimestamp', Date.now());
-        } else if (now - lastTapTime < energylimit) {
-           
-            return;
         }
 
-        setLastTapTime(now);
 
-        let oldcoins = localStorage.getItem("coins");
-        if (oldcoins) {
-            setCoins(parseInt(oldcoins) + CoinsSpeed)
-      
-        }else{
-            setCoins(coins + CoinsSpeed);
-        }
-       
-        const { clientX, clientY } = event;
-
-        
-        const newAnimation = { id: Date.now(), x: clientX, y: clientY };
-
-        setAnimations((prevAnimations) => [...prevAnimations, newAnimation]);
-
-
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-        console.log(coins);
-       
-
-
-
-        timeoutRef.current = setTimeout(() => {
-            makeApiRequest();
-
-            timeoutRef.current = null;
-        }, 1000);
-
-        setTimeout(() => {
-            setAnimations((prevAnimations) =>
-                prevAnimations.filter((anim) => anim.id !== newAnimation.id)
-            );
-        }, 1000);
-
-
-
-        setTimeout(() => {
-            setAnimations((prevAnimations) =>
-                prevAnimations.filter((anim) => anim.id !== newAnimation.id)
-            );
-        }, 1000);
-
-
-        localStorage.setItem("coins",coins);
     };
 
     return (
